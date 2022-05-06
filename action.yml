@@ -2,7 +2,7 @@ name: 'AWS CodeArtifact Auth'
 author: Paul Mowat
 description: 'Github action for authenticating with AWS CodeArtifact'
 runs:
-  using: 'node14'
+  using: 'node16'
   main: 'dist/main/index.js'
 branding:
   icon: 'check'
