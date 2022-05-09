@@ -14,7 +14,7 @@ describe('test runs', () => {
     const options = {
       region: 'eu-west-2',
       domain: 'mock',
-      domainOwner: '012345678',
+      domainOwner: '39705096351',
       format: 'npm',
       repository: 'mock',
       durationSeconds: '900'
@@ -53,7 +53,7 @@ describe('test runs', () => {
     const options = {
       region: 'eu-west-2',
       domain: 'mock',
-      domainOwner: '012345678',
+      domainOwner: '39705096351',
       format: 'npm',
       repository: 'mock',
       durationSeconds: '900'

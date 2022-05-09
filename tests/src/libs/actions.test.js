@@ -12,7 +12,7 @@ describe('actions', () => {
     const config = {
       region: 'eu-west-2',
       domain: 'mock',
-      domainOwner: '012345678',
+      domainOwner: '39705096351',
       format: 'npm',
       repository: 'mock',
       durationSeconds: '900'
@@ -42,7 +42,7 @@ describe('actions', () => {
     const options = {
       region: 'eu-west-2',
       domain: 'mock',
-      domainOwner: '012345678',
+      domainOwner: '39705096351',
       format: 'npm',
       repository: 'mock',
       durationSeconds: '900'
@@ -67,7 +67,7 @@ describe('actions', () => {
     const options = {
       region: 'eu-west-2',
       domain: 'mock',
-      domainOwner: '012345678',
+      domainOwner: '39705096351',
       format: 'pypi',
       repository: 'mock',
       durationSeconds: '900'
@@ -94,7 +94,7 @@ describe('actions', () => {
     const options = {
       region: 'eu-west-2',
       domain: 'mock',
-      domainOwner: '012345678',
+      domainOwner: '39705096351',
       format: 'maven',
       repository: 'mock',
       durationSeconds: '900'
@@ -120,7 +120,7 @@ describe('actions', () => {
     const options = {
       region: 'eu-west-2',
       domain: 'mock',
-      domainOwner: '012345678',
+      domainOwner: '39705096351',
       format: 'nuget',
       repository: 'mock',
       durationSeconds: '900'

@@ -5,7 +5,7 @@ module.exports.getInputs = () => {
     domain: core.getInput('domain', { required: true }),
     domainOwner: core.getInput('domain-owner', { required: true }),
     format: core.getInput('format', { required: true }),
-    repository: core.getInput('format', { required: true }),
+    repository: core.getInput('repository', { required: true }),
     durationSeconds: core.getInput('duration-seconds', { required: false })
   }
 }
