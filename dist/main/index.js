@@ -20977,30 +20977,17 @@ module.exports.getInputs = () => {
     region: core.getInput('region', { required: true }),
     domain: core.getInput('domain', { required: true }),
     domainOwner: core.getInput('domain-owner', { required: true }),
-    format: core.getInput('format', { required: true }),
-    repository: core.getInput('repository', { required: true }),
     durationSeconds: core.getInput('duration-seconds', { required: false })
   }
 }
 
-module.exports.exportVariables = (options, { token, repositoryUrl }) => {
-  switch (options.format) {
-    case 'npm':
-      core.exportVariable('NPM_TOKEN', token)
-      break
-    case 'pypi':
-      core.exportVariable('TWINE_USERNAME', 'aws')
-      core.exportVariable('TWINE_PASSWORD', token)
-      core.exportVariable('TWINE_REPOSITORY_URL', repositoryUrl)
-      break
-    case 'maven':
-      core.exportVariable('MAVEN_USERNAME', 'aws')
-      core.exportVariable('MAVEN_TOKEN', token)
-      break
-    case 'nuget':
-      core.exportVariable('NUGET_AUTH_TOKEN', token)
-      break
-  }
+module.exports.exportVariables = (token) => {
+  core.exportVariable('NPM_TOKEN', token)
+  core.exportVariable('TWINE_USERNAME', 'aws')
+  core.exportVariable('TWINE_PASSWORD', token)
+  core.exportVariable('MAVEN_USERNAME', 'aws')
+  core.exportVariable('MAVEN_TOKEN', token)
+  core.exportVariable('NUGET_AUTH_TOKEN', token)
 }
 
 
@@ -21032,23 +21019,6 @@ module.exports.getAuthToken = async ({ region, domain, domainOwner, durationSeco
   return authorizationToken
 }
 
-module.exports.getRepositoryUrl = async ({ region, domain, domainOwner, format, repository }) => {
-  const client = new codeArtifact.CodeartifactClient({ region })
-
-  const repositoryCommand = new codeArtifact.GetRepositoryEndpointCommand({
-    domain,
-    domainOwner,
-    format,
-    repository
-  })
-
-  const { repositoryEndpoint } = await client.send(repositoryCommand)
-
-  core.debug(`AWS CodeArtifact Auth: Repository url is ${repositoryEndpoint}`)
-
-  return repositoryEndpoint
-}
-
 
 /***/ }),
 
@@ -21059,19 +21029,17 @@ const core = __nccwpck_require__(2186)
 
 const { getInputs, exportVariables } = __nccwpck_require__(7177)
 
-const { getAuthToken, getRepositoryUrl } = __nccwpck_require__(4033)
+const { getAuthToken } = __nccwpck_require__(4033)
 
 async function run () {
   try {
     const options = getInputs()
 
     const token = await getAuthToken(options)
-    const repositoryUrl = await getRepositoryUrl(options)
 
     core.setSecret(token)
-    core.setSecret(repositoryUrl)
 
-    exportVariables(options, { token, repositoryUrl })
+    exportVariables(token)
   } catch (error) {
     core.setFailed(error.message)
   }
