@@ -20,20 +20,3 @@ module.exports.getAuthToken = async ({ region, domain, domainOwner, durationSeco
 
   return authorizationToken
 }
-
-module.exports.getRepositoryUrl = async ({ region, domain, domainOwner, format, repository }) => {
-  const client = new codeArtifact.CodeartifactClient({ region })
-
-  const repositoryCommand = new codeArtifact.GetRepositoryEndpointCommand({
-    domain,
-    domainOwner,
-    format,
-    repository
-  })
-
-  const { repositoryEndpoint } = await client.send(repositoryCommand)
-
-  core.debug(`AWS CodeArtifact Auth: Repository url is ${repositoryEndpoint}`)
-
-  return repositoryEndpoint
-}

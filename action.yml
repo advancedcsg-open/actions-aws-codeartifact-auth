@@ -17,12 +17,6 @@ inputs:
   domain-owner:
     description: 'AWS CodeArtifact Domain Owner'
     required: true
-  repository:
-    description: 'AWS CodeArtifact Repository Name'
-    required: true
-  format:
-    description: 'The package format, Can be one of npm, pypi, maven or nuget'
-    required: true
   duration:
     description: 'The time, in seconds, that the generated authorization token is valid'
     required: false

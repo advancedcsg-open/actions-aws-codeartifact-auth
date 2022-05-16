@@ -13,8 +13,6 @@ describe('actions', () => {
       region: 'eu-west-2',
       domain: 'mock',
       domainOwner: '39705096351',
-      format: 'npm',
-      repository: 'mock',
       durationSeconds: '900'
     }
 
@@ -22,8 +20,6 @@ describe('actions', () => {
       .mockReturnValueOnce(config.region)
       .mockReturnValueOnce(config.domain)
       .mockReturnValueOnce(config.domainOwner)
-      .mockReturnValueOnce(config.format)
-      .mockReturnValueOnce(config.repository)
       .mockReturnValueOnce(config.durationSeconds)
 
     // Run Test
@@ -39,101 +35,18 @@ describe('actions', () => {
     const actionsCore = require('@actions/core')
     jest.mock('@actions/core')
 
-    const options = {
-      region: 'eu-west-2',
-      domain: 'mock',
-      domainOwner: '39705096351',
-      format: 'npm',
-      repository: 'mock',
-      durationSeconds: '900'
-    }
-
     const token = 'this-is-a-mock-token'
-    const repositoryUrl = 'this-is-a-mock-endpoint'
 
     // Run Test
     const { exportVariables } = require('../../../src/libs/actions')
-    exportVariables(options, { token, repositoryUrl })
+    exportVariables(token)
 
     // Verify Test
     expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(1, 'NPM_TOKEN', token)
-  })
-
-  it('test exportVariables - pypi success', async () => {
-    // Setup test
-    const actionsCore = require('@actions/core')
-    jest.mock('@actions/core')
-
-    const options = {
-      region: 'eu-west-2',
-      domain: 'mock',
-      domainOwner: '39705096351',
-      format: 'pypi',
-      repository: 'mock',
-      durationSeconds: '900'
-    }
-
-    const token = 'this-is-a-mock-token'
-    const repositoryUrl = 'this-is-a-mock-endpoint'
-
-    // Run Test
-    const { exportVariables } = require('../../../src/libs/actions')
-    exportVariables(options, { token, repositoryUrl })
-
-    // Verify Test
-    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(1, 'TWINE_USERNAME', 'aws')
-    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(2, 'TWINE_PASSWORD', token)
-    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(3, 'TWINE_REPOSITORY_URL', repositoryUrl)
-  })
-
-  it('test exportVariables - maven success', async () => {
-    // Setup test
-    const actionsCore = require('@actions/core')
-    jest.mock('@actions/core')
-
-    const options = {
-      region: 'eu-west-2',
-      domain: 'mock',
-      domainOwner: '39705096351',
-      format: 'maven',
-      repository: 'mock',
-      durationSeconds: '900'
-    }
-
-    const token = 'this-is-a-mock-token'
-    const repositoryUrl = 'this-is-a-mock-endpoint'
-
-    // Run Test
-    const { exportVariables } = require('../../../src/libs/actions')
-    exportVariables(options, { token, repositoryUrl })
-
-    // Verify Test
-    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(1, 'MAVEN_USERNAME', 'aws')
-    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(2, 'MAVEN_TOKEN', token)
-  })
-
-  it('test exportVariables - nuget success', async () => {
-    // Setup test
-    const actionsCore = require('@actions/core')
-    jest.mock('@actions/core')
-
-    const options = {
-      region: 'eu-west-2',
-      domain: 'mock',
-      domainOwner: '39705096351',
-      format: 'nuget',
-      repository: 'mock',
-      durationSeconds: '900'
-    }
-
-    const token = 'this-is-a-mock-token'
-    const repositoryUrl = 'this-is-a-mock-endpoint'
-
-    // Run Test
-    const { exportVariables } = require('../../../src/libs/actions')
-    exportVariables(options, { token, repositoryUrl })
-
-    // Verify Test
-    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(1, 'NUGET_AUTH_TOKEN', token)
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(2, 'TWINE_USERNAME', 'aws')
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(3, 'TWINE_PASSWORD', token)
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(4, 'MAVEN_USERNAME', 'aws')
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(5, 'MAVEN_TOKEN', token)
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(6, 'NUGET_AUTH_TOKEN', token)
   })
 })

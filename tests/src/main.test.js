@@ -15,8 +15,6 @@ describe('test runs', () => {
       region: 'eu-west-2',
       domain: 'mock',
       domainOwner: '39705096351',
-      format: 'npm',
-      repository: 'mock',
       durationSeconds: '900'
     }
 
@@ -24,11 +22,9 @@ describe('test runs', () => {
     const getInputsSpy = jest.spyOn(actions, 'getInputs').mockReturnValue(options)
 
     const token = 'this-is-a-mock-token'
-    const repositoryUrl = 'this-is-a-mock-endpoint'
 
     const codeArtifact = require('../../src/libs/codeartifact')
     const getAuthTokenSpy = jest.spyOn(codeArtifact, 'getAuthToken').mockReturnValue(token)
-    const getRepositoryUrlSpy = jest.spyOn(codeArtifact, 'getRepositoryUrl').mockReturnValue(repositoryUrl)
 
     // Run Test
     const action = require('../../src/main')
@@ -38,11 +34,14 @@ describe('test runs', () => {
     expect(getInputsSpy).toHaveBeenCalled()
     expect(getInputsSpy).toHaveReturnedWith(options)
     expect(getAuthTokenSpy).toHaveBeenCalledWith(options)
-    expect(getRepositoryUrlSpy).toHaveBeenCalledWith(options)
     expect(getAuthTokenSpy).toHaveReturnedWith(token)
-    expect(getRepositoryUrlSpy).toHaveReturnedWith(repositoryUrl)
 
-    expect(actionsCore.exportVariable).toHaveBeenCalledWith('NPM_TOKEN', token)
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(1, 'NPM_TOKEN', token)
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(2, 'TWINE_USERNAME', 'aws')
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(3, 'TWINE_PASSWORD', token)
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(4, 'MAVEN_USERNAME', 'aws')
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(5, 'MAVEN_TOKEN', token)
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(6, 'NUGET_AUTH_TOKEN', token)
   })
 
   it('test action as module execute - failed', async () => {
@@ -54,8 +53,6 @@ describe('test runs', () => {
       region: 'eu-west-2',
       domain: 'mock',
       domainOwner: '39705096351',
-      format: 'npm',
-      repository: 'mock',
       durationSeconds: '900'
     }
 

@@ -30,18 +30,13 @@ The name of the domain that is in scope for the generated authorization token.
 
 The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces.
 
-#### `format`
-
-The format of the packages. Can be one of 'npm', 'pypi', 'maven', 'nuget'
-
-#### 'duration'
+#### `duration`
 
 The time, in seconds, that the generated authorization token is valid. Valid values are 0 and any number between 900 (15 minutes) and 43200 (12 hours). A value of 0 will set the expiration of the authorization token to the same expiration of the user's role's temporary credentials. Defaults to 0.
 
 ### Exported Variables
----
 
-The action will export variables according to the `format` specified. These can then be used in conjunction with the package managers to publish artifacts.
+The action will export the following variables. These can then be used in conjunction with the package managers to publish artifacts.
 
 #### NPM
 
@@ -55,7 +50,6 @@ The action will export variables according to the `format` specified. These can 
 |----------------------|-------------------------------------------|
 | TWINE_USERNAME       | The authentication username. Set as `aws` |
 | TWINE_PASSWORD       | The authentication token                  |
-| TWINE_REPOSITORY_URL | The CodeArtifact repository URL           |
 
 #### Maven
 
@@ -97,8 +91,6 @@ jobs:
           region: ${{ secrets.AWS_REGION }}
           domain: ${{ secrets.AWS_CODEARTIFACT_DOMAIN }}
           domain-owner: ${{ secrets.AWS_CODEARTIFACT_DOMAIN_OWNER }}
-          repository: ${{ secrets.AWS_CODEARTIFACT_REPOSITORY }}
-          format: 'npm'
       - name: Publish npm
         run: |
           npm publish
