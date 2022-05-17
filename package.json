@@ -28,7 +28,7 @@
   "homepage": "https://github.com/advancedcsg-open/actions-aws-codeartifact-auth#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "@aws-sdk/client-codeartifact": "^3.14.0"
+    "@aws-sdk/client-codeartifact": "^3.92.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.31.1",
