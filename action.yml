@@ -1,0 +1,26 @@
+name: 'AWS CodeArtifact Auth'
+author: Paul Mowat
+description: 'Github action for authenticating with AWS CodeArtifact'
+runs:
+  using: 'node16'
+  main: 'dist/main/index.js'
+branding:
+  icon: 'check'
+  color: 'gray-dark'
+inputs:
+  region:
+    description: 'AWS CodeArtifact Region'
+    required: true
+  domain:
+    description: 'AWS CodeArtifact Domain'
+    required: true
+  domain-owner:
+    description: 'AWS CodeArtifact Domain Owner'
+    required: true
+  duration:
+    description: 'The time, in seconds, that the generated authorization token is valid'
+    required: false
+    default: '0'
+outputs:
+  aws-codeartifact-token: # output will be available to future steps
+    description: 'AWS CodeArtifact authentication token'
