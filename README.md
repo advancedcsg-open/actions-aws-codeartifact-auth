@@ -56,7 +56,7 @@ The action will export the following variables. These can then be used in conjun
 | Name                 | Description                               |
 |----------------------|-------------------------------------------|
 | MAVEN_USERNAME       | The authentication username. Set as `aws` |
-| MAVEN_TOKEN          | The authentication token                  |
+| MAVEN_PASSWORD          | The authentication token                  |
 
 #### Nuget
 
