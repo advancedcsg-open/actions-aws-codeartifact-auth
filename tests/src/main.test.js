@@ -40,7 +40,7 @@ describe('test runs', () => {
     expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(2, 'TWINE_USERNAME', 'aws')
     expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(3, 'TWINE_PASSWORD', token)
     expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(4, 'MAVEN_USERNAME', 'aws')
-    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(5, 'MAVEN_TOKEN', token)
+    expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(5, 'MAVEN_PASSWORD', token)
     expect(actionsCore.exportVariable).toHaveBeenNthCalledWith(6, 'NUGET_AUTH_TOKEN', token)
   })
 
