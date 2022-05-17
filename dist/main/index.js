@@ -21054,7 +21054,7 @@ module.exports.exportVariables = (token) => {
   core.exportVariable('TWINE_USERNAME', 'aws')
   core.exportVariable('TWINE_PASSWORD', token)
   core.exportVariable('MAVEN_USERNAME', 'aws')
-  core.exportVariable('MAVEN_TOKEN', token)
+  core.exportVariable('MAVEN_PASSWORD', token)
   core.exportVariable('NUGET_AUTH_TOKEN', token)
 }
 
