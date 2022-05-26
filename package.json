@@ -31,7 +31,7 @@
     "@aws-sdk/client-codeartifact": "^3.92.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.33.4",
+    "@vercel/ncc": "^0.34.0",
     "jest": "^28.1.0",
     "jest-aws-simple-mock": "^0.11.5",
     "standard": "^17.0.0"
